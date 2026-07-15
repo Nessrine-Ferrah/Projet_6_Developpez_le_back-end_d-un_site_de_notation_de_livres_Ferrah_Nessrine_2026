@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bookRoutes = require('./routes/book')
 
 const app = express();
 
@@ -20,8 +21,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res) => {
-   res.json({ message: 'Votre requête a bien été reçue !' }); 
-});
+app.use('/api/books', bookRoutes);
 
 module.exports = app;
