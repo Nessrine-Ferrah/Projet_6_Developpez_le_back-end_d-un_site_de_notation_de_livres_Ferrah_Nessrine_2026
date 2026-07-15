@@ -1,6 +1,15 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
+
+mongoose.connect('mongodb+srv://nessrineferrah01_db_user:3lmG8p4biTTTeoCv@cluster0.qegigyn.mongodb.net/?appName=Cluster0',)
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch((error) => {
+  console.log('Connexion à MongoDB échouée !');
+  console.error(error);
+});
+
 
 app.use(express.json());
 
