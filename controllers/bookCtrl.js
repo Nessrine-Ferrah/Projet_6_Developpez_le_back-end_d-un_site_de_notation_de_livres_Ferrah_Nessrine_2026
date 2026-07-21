@@ -31,6 +31,9 @@ exports.ratingBook = (req, res, next) => {
 
        book.ratings.push({ userId: userId, grade: rating });
 
+      
+       const total = book.ratings.reduce((sum, r) => sum + r.grade, 0);
+       book.averageRating = total / book.ratings.length;
 
        book.save()
         .then(updatedBook => res.status(200).json(updatedBook))
@@ -43,7 +46,7 @@ exports.bestRatingBook = (req, res, next) => {
   Book.find()
     .then(books => {
         const sortBooks = books.sort((a, b) => b.averageRating - a.averageRating);
-        const bestThree = sortedBooks.slice(0, 3);
+        const bestThree = sortBooks.slice(0, 3);
         res.status(200).json(bestThree);
     })
     .catch(error => res.status(400).json({ error }));

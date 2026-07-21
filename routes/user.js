@@ -1,5 +1,5 @@
 const express = require('express');
-const bookCtrl = require('../controllers/userCtrl')
+const userCtrl = require('../controllers/userCtrl');
 
 const router = express.Router();
 
