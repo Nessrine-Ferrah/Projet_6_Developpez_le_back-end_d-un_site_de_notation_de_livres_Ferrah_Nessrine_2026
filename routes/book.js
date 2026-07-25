@@ -1,16 +1,31 @@
-const express = require('express');
-const bookCtrl = require('../controllers/bookCtrl');
-const auth = require('../middleware/auth');
-const multer = require('../middleware/multer-config');
+import express from "express";
+import auth from "../middleware/auth.js";
+import multer from "../middleware/multer-config.js";
+import {
+  createBook,
+  ratingBook,
+  bestRatingBook,
+  getOneBook,
+  modifyBook,
+  deleteBook,
+  getAllBook
+} from "../controllers/bookCtrl.js";
 
 const router = express.Router();
 
-router.post('/', auth, multer, bookCtrl.createBook);
-router.post('/:id/rating', auth, bookCtrl.ratingBook);
-router.get('/bestrating', bookCtrl.bestRatingBook);
-router.get('/:id', bookCtrl.getOneBook);
-router.put('/:id', auth, multer, bookCtrl.modifyBook);
-router.delete('/:id', auth, bookCtrl.deleteBook);
-router.get('/', bookCtrl.getAllBook);
+// GET
+router.get('/', getAllBook);
+router.get('/bestrating', bestRatingBook);
+router.get('/:id', getOneBook);
 
-module.exports = router;
+// POST
+router.post('/', auth, multer, createBook);
+router.post('/:id/rating', auth, ratingBook);
+
+// PUT
+router.put('/:id', auth, multer, modifyBook);
+
+// DELETE
+router.delete('/:id', auth, deleteBook);
+
+export default router;

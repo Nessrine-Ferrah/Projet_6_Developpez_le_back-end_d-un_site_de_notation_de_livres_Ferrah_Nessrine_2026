@@ -1,8 +1,14 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
-const bookRoutes = require('./routes/book')
-const userRoutes = require('./routes/user');
+import express from "express";
+import mongoose from "mongoose";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+import bookRoutes from "./routes/book.js";
+import userRoutes from "./routes/user.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 
@@ -27,4 +33,4 @@ app.use('/api/books', bookRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/images', express.static(path.join(__dirname,'images')));
 
-module.exports = app;
+export default app;
