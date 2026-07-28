@@ -13,4 +13,4 @@ Ouvrir le dossier backend
 Lire le fichier README.md présent dans ce dossier pour :
 - installer les dépendances
 - configurer le fichier .env
-- lancer le serveur avec nodemon
+- lancer le serveur avec nodemon 
