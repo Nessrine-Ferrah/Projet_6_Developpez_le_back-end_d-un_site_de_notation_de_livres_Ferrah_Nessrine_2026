@@ -1,16 +1,41 @@
-Projet 6 – Application de notation de livres
+## Backend API – Projet 6
+Ce dossier contient le code backend du projet de notation de livres.
 
-Code du projet 6 du parcours Développeur Web.
+## Lancement du backend
+Ouvrez un terminal dans ce dossier.
 
-Architecture
+Pour installer les dépendances du projet, exécutez :
 
-Ce dépôt contient uniquement le code backend du projet de notation de livres.
+npm install
 
-Lancer le backend
+Le backend utilise nodemon pour fonctionner.
+Lancez le serveur avec :
 
-Ouvrir le dossier backend  
+nodemon server
 
-Lire le fichier README.md présent dans ce dossier pour :
-- installer les dépendances
-- configurer le fichier .env
-- lancer le serveur avec nodemon 
+Laissez ce terminal tourner pour utiliser l’application.
+
+## Configuration requise
+Le backend utilise dotenv pour les variables sensibles.
+Créer un fichier .env à la racine du dossier backend contenant :
+
+MONGO_URI=votre_uri_mongodb_atlas
+JWT_SECRET=votre_cle_secrete
+
+Le fichier .env doit être ignoré dans .gitignore.
+
+## Technologies utilisées
+- Node.js / Express
+- MongoDB Atlas / Mongoose
+- dotenv
+- Multer (upload d’images)
+- Sharp (compression d’images)
+- JWT (authentification)
+- ES Modules
+
+## Fonctionnement
+- Les routes API sont dans /routes
+- Les contrôleurs sont dans /controllers
+- Les modèles MongoDB sont dans /models
+- Les images uploadées sont compressées puis stockées dans /images
+- Lorsqu’un livre est supprimé, son image est supprimée automatiquement
