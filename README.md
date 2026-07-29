@@ -4,22 +4,44 @@ Ce dossier contient le code backend du projet de notation de livres.
 ## Configuration requise
 
 # Version de Node
-Ce backend a été développé avec :
+Ce backend a été développé initialement avec :
 
 Node.js v20.9.0
-Il est recommandé d’utiliser une version équivalente ou supérieure.
+
+Cependant, pour éviter les erreurs de compilation liées à Sharp, il est fortement recommandé d’utiliser une version plus récente :
+
+Node.js v26.x (recommandé)  
+Sharp est mieux supporté sur les versions récentes de Node, ce qui évite les erreurs de build ou de dépendances natives.
 
 # Variables d’environnement
 Le backend utilise dotenv pour gérer les informations sensibles.
-Créer un fichier .env à la racine du dossier backend contenant :
+Vous devez créer un fichier : backend/.env
+avec les variables suivantes :
 
 MONGO_URI=votre_url_mongodb_atlas
 JWT_SECRET=votre_cle_secrete
 
-- L’URI MongoDB doit être récupérée dans MongoDB Atlas :  
-  Database → Connect → Drivers → copier l’URI fournie par Atlas.
-- Ne jamais mettre d’URL contenant un utilisateur supprimé ou un mot de passe exposé.  
-- Le fichier .env doit être ignoré dans .gitignore.
+Détails importants
+
+- MONGO_URI :
+À récupérer dans MongoDB Atlas → Database → Connect → Drivers.
+Copiez l’URI fournie par Atlas (avec votre utilisateur et mot de passe valides).
+
+- JWT_SECRET :
+Une clé secrète utilisée pour signer les tokens JWT (ex : une chaîne aléatoire).
+
+- Le fichier .env doit être ignoré dans .gitignore pour éviter toute fuite de données sensibles.
+
+Un fichier .env.example est fourni pour montrer la structure attendue des variables d’environnement :
+
+MONGO_URI=
+JWT_SECRET=
+
+Son utilité :
+
+- Documenter les variables nécessaires au projet
+- Permettre à un autre développeur de créer rapidement son propre .env
+- Éviter de partager des informations sensibles dans le dépôt
 
 ## Lancement du backend
 - Ouvrez un terminal dans le dossier backend.
