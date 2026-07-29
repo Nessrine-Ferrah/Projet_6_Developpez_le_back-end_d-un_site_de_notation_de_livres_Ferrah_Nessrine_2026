@@ -1,28 +1,39 @@
 ## Backend API – Projet 6
 Ce dossier contient le code backend du projet de notation de livres.
 
-## Lancement du backend
-Ouvrez un terminal dans ce dossier.
-
-Pour installer les dépendances du projet, exécutez :
-
-npm install
-
-Le backend utilise nodemon pour fonctionner.
-Lancez le serveur avec :
-
-nodemon server
-
-Laissez ce terminal tourner pour utiliser l’application.
-
 ## Configuration requise
-Le backend utilise dotenv pour les variables sensibles.
+
+# Version de Node
+Ce backend a été développé avec :
+
+Node.js v20.9.0
+Il est recommandé d’utiliser une version équivalente ou supérieure.
+
+# Variables d’environnement
+Le backend utilise dotenv pour gérer les informations sensibles.
 Créer un fichier .env à la racine du dossier backend contenant :
 
-MONGO_URI=votre_uri_mongodb_atlas
+MONGO_URI=votre_url_mongodb_atlas
 JWT_SECRET=votre_cle_secrete
 
-Le fichier .env doit être ignoré dans .gitignore.
+- L’URI MongoDB doit être récupérée dans MongoDB Atlas :  
+  Database → Connect → Drivers → copier l’URI fournie par Atlas.
+- Ne jamais mettre d’URL contenant un utilisateur supprimé ou un mot de passe exposé.  
+- Le fichier .env doit être ignoré dans .gitignore.
+
+## Lancement du backend
+- Ouvrez un terminal dans le dossier backend.
+- Installer les dépendances : npm install
+
+Lancer le serveur
+Deux options sont possibles :
+
+- Option 1 : npm start 
+
+- Option 2 — nodemon (si installé)
+Permet un rechargement automatique : nodemon server
+
+- Le serveur démarre sur : http://localhost:4000
 
 ## Technologies utilisées
 - Node.js / Express
