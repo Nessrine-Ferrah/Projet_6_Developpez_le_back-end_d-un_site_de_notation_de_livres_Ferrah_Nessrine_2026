@@ -23,12 +23,7 @@ JWT_SECRET=votre_cle_secrete
 
 Détails importants
 
-- MONGO_URI :
-À récupérer dans MongoDB Atlas → Database → Connect → Drivers.
-Copiez l’URI fournie par Atlas (avec votre utilisateur et mot de passe valides).
-
-- JWT_SECRET :
-Une clé secrète utilisée pour signer les tokens JWT (ex : une chaîne aléatoire).
+- Les valeurs de MONGO_URI et JWT_SECRET (clé secrète pour signer les tokens JWT) doivent être récupérées dans le livrable.
 
 - Le fichier .env doit être ignoré dans .gitignore pour éviter toute fuite de données sensibles.
 
