@@ -82,10 +82,14 @@ export async function modifyBook (req, res, next) {
         const book = await Book.findOne({_id: req.params.id});
         if (book.userId != req.auth.userId) {
             return res.status(401).json({ message : 'Not authorized'});
-        } else {
-            await Book.updateOne({ _id: req.params.id}, { ...bookObject, _id: req.params.id});
-            res.status(200).json({message : 'livre modifié!'});
-        }
+        } 
+
+        await Book.updateOne({ _id: req.params.id}, { ...bookObject, _id: req.params.id});
+        
+        // Récupérer le livre mis à jour
+        const updatedBook = await Book.findOne({ _id: req.params.id });
+        // Renvoyer le livre 
+        res.status(200).json(updatedBook);
         
     } catch (error) {
         res.status(400).json({ error });
@@ -99,10 +103,17 @@ export async function deleteBook (req, res, next) {
             return res.status(401).json({message: 'Not authorized'});
         } 
         const filename = book.imageUrl.split('/images/')[1];
-        fs.unlink(`images/${filename}`, async () => {
+        const filePath = `images/${filename}`;
+        fs.unlink(filePath, async (err) => {
+            if (err) {
+                console.error("Erreur suppression image :", err);
+                return res.status(500).json({ error: "Impossible de supprimer l'image" });
+            }
+
             await Book.deleteOne({_id: req.params.id})
             res.status(200).json({message: 'Livre supprimé !'});      
         });
+        
     } catch (error) {
         res.status(500).json({ error });
     }

@@ -3,6 +3,10 @@ import fs from "fs";
 
 export async function sharpOptimize (req, res, next) {
     try {
+        if(!req.file) {
+            return next();
+        }
+
         const inputPath = req.file.path; 
         // path = le chemin complet du fichier sur ton serveur
         const baseName = req.file.filename.split('.')[0];
@@ -21,8 +25,9 @@ export async function sharpOptimize (req, res, next) {
         // Supprimer l'image originale
         fs.unlinkSync(inputPath);
 
-        // On choisit le format webp pour MongoDB
+        // Mettre à jour req.file pour le controller
         req.file.filename = `${baseName}_optimized.webp`;
+        req.file.path = webpOutput;
 
         next(); // On passe au controller createBook et modifyBook
 
